@@ -1,8 +1,23 @@
 package com.example.demo.employee;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity //FOR HIBERNATE
+@Table //FOR TABLE IN DATABASE
 public class Employee {
+    @Id
+    @SequenceGenerator(
+            name = "employee_sequence",
+            sequenceName = "employee_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            //recommended for postgres is sequence
+            strategy = GenerationType.SEQUENCE,
+            generator = "employee_sequence"
+    )
     private Long id;
     private String name;
     private String email;
